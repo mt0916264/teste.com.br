@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Império do Luxo - Venda de itens de prata e ouro">
+    <title>Império do Luxo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Fundo cinza claro */
+            overflow-x: hidden; /* Evita rolagem horizontal */
+        }
+
+        header {
+            background-color: #333; /* Fundo escuro do cabeçalho */
+            color: #fff; /* Cor do texto do cabeçalho */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn-register {
+            padding: 10px 20px;
+            background-color: #ffcc00; /* Fundo do botão em amarelo */
+            color: black;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px auto;
+            width: 200px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-register:hover {
+            background-color: #ff9900;
+            transform: scale(1.05);
+        }
+
+        .additional-text {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Estilos da página de cadastro */
+        .form-container {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            background-color: #ffcc00;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        p.welcome-message {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+
+        .form-container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f5f5f5;
+        }
+
+        .form-container input::placeholder {
+            color: #999;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .form-container button:hover {
+            background-color: #ff9900;
+        }
+
+        /* Estilo da imagem na página de cadastro */
+        .form-container img {
+            max-width: 100%; /* A imagem não ultrapassa a largura da página */
+            height: auto; /* Mantém a proporção da imagem */
+            margin-bottom: 20px; /* Espaço abaixo da imagem */
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+    </style>
+    <script>
+        function goToRegister() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('register-page').style.display = 'block';
+        }
+
+        function validateForm() {
+            document.getElementById('register-form').onsubmit = function() {
+                setTimeout(function() {
+                    window.location.href = 'loading.html'; // Redireciona para a página de carregamento após 10 segundos
+                }, 10000); // 10 segundos
+                return true; // Permite o envio do formulário
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Página Inicial -->
+    <div id="home-page">
+        <header>
+            <h1>Bem-vindo ao Império do Luxo</h1>
+            <p>Os melhores itens de prata e ouro, com exclusividade para você!</p>
+        </header>
+
+        <div class="container">
+            <h2>Uma das melhores lojas do momento!</h2>
+            <p>Bem-vindo ao Império do Luxo – onde joias se transformam em arte e exclusividade.</p>
+            <p>Nossa loja é referência no mercado de joias finas, oferecendo peças elegantes e de alta qualidade em prata e ouro, além de uma variedade de dedeiras e correntes que combinam sofisticação e estilo.</p>
+            <p>Cada item é selecionado com um cuidado especial, garantindo que você receba o melhor em beleza e durabilidade.</p>
+            <button class="btn-register" onclick="goToRegister()">Ir para cadastro</button>
+            
+            <p class="additional-text">
+                No Império do Luxo, nos orgulhamos de oferecer não apenas produtos de qualidade excepcional, mas também preços competitivos que não comprometam a excelência. Sabemos que nossos clientes valorizam não só a estética, mas também o custo-benefício. Por isso, trabalhamos constantemente para garantir as melhores ofertas, sem deixar de lado o padrão que nos destaca no mercado.
+                <br><br>
+                Com entregas rápidas e seguras, você pode ter a certeza de que suas joias chegarão ao seu destino com a agilidade que você merece. Além disso, nossa equipe está sempre à disposição para garantir uma experiência de compra agradável e personalizada.
+                <br><br>
+                Escolha o Império do Luxo e adicione um toque de brilho e exclusividade ao seu estilo. Aqui, cada detalhe é pensado para superar suas expectativas.
+            </p>
+        </div>
+    </div>
+
+    <!-- Página de Cadastro -->
+    <div id="register-page" style="display: none;">
+        <div class="container">
+            <div class="form-container">
+                <h1>Bem-vindo ao Império do Luxo</h1>
+                <p class="welcome-message">Preencha o formulário abaixo para se cadastrar e aproveitar nossas ofertas exclusivas!</p>
+
+                <img src="content://media/external/downloads/1000040597" alt="Imagem de boas-vindas">
+
+                <form id="register-form" onsubmit="return validateForm()">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+                    <button type="submit" class="btn-submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

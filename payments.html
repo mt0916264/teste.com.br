@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout - Império do Luxo">
+    <title>Checkout - Império do Luxo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Fundo cinza claro */
+            text-align: center;
+        }
+
+        header {
+            background-color: #333; /* Fundo escuro do cabeçalho */
+            color: #fff; /* Cor do texto do cabeçalho */
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* Fundo branco */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .summary {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .summary p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        #qrCode {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ffcc00; /* Fundo do botão em amarelo */
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #ff9900; /* Efeito de hover no botão */
+        }
+
+        .pix-key {
+            font-size: 16px;
+            margin: 10px 0;
+            display: inline-block;
+            color: #666; /* Cor do texto da chave Pix */
+        }
+
+        .note {
+            font-size: 14px;
+            color: #888; /* Cor do texto de nota */
+            margin-top: 10px;
+        }
+
+        .countdown {
+            font-size: 16px;
+            color: black; /* Cor preta para o aviso de tempo */
+            margin-top: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Checkout - Império do Luxo</h1>
+    </header>
+
+    <div class="container">
+        <h2>Área de Pagamento</h2>
+        <div class="summary">
+            <p><strong><span id="productName"></span></strong></p>
+        </div>
+        <p class="note">Por favor, efetue o pagamento de acordo com o valor do produto acima.</p>
+        <h2>Pagamento via Pix</h2>
+        <div id="qrCode"></div>
+        <p class="pix-key">Chave Pix: <strong>93eafc63-1aa7-4682-a15c-d39043aafd48</strong></p>
+        <div class="countdown" id="countdown" style="display:none;"></div>
+        <button onclick="copyPixKey()">Copiar Chave Pix</button>
+        <p class="note">Escaneie o QR Code ou use a chave Pix acima para efetuar o pagamento.</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Obtém o preço e nome do produto armazenados
+            const price = localStorage.getItem('productPrice');
+            const productName = localStorage.getItem('productName');
+
+            // Exibe os detalhes do produto
+            $('#productName').text(productName);
+
+            // Gera o QR Code
+            const pixKey = "93eafc63-1aa7-4682-a15c-d39043aafd48";
+            const qrValue = `pix:${pixKey}?amount=${parseFloat(price).toFixed(2)}`;
+            const qrcode = new QRCode(document.getElementById("qrCode"), {
+                text: qrValue,
+                width: 128,
+                height: 128,
+            });
+        });
+
+        function copyPixKey() {
+            const pixKey = "93eafc63-1aa7-4682-a15c-d39043aafd48";
+            navigator.clipboard.writeText(pixKey).then(() => {
+                alert("Chave Pix copiada para a área de transferência!");
+                startCountdown(25); // Inicia a contagem regressiva de 25 minutos
+            });
+        }
+
+        function startCountdown(minutes) {
+            let seconds = minutes * 60;
+            $('#countdown').show();
+
+            const interval = setInterval(() => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                $('#countdown').text(`Chave válida por: ${mins} minutos e ${secs} segundos`);
+
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    $('#countdown').text("Chave Pix expirada!");
+                }
+                seconds--;
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
